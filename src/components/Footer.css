@@ -1,0 +1,30 @@
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-soft);
+  padding: 24px 0;
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  justify-content: space-between;
+}
+
+.footer__text {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.footer__text--mono {
+  font-family: var(--font-mono);
+}
+
+.footer__link {
+  color: var(--accent-cyan);
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}

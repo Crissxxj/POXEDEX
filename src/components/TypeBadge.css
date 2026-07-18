@@ -1,0 +1,14 @@
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--type-color);
+  background: color-mix(in srgb, var(--type-color) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--type-color) 45%, transparent);
+}

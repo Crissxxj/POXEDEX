@@ -1,0 +1,15 @@
+.error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.error-box p {
+  color: var(--accent-red-dim);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  max-width: 420px;
+}
