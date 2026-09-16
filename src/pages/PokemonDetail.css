@@ -44,6 +44,13 @@
   margin-bottom: 24px;
 }
 
+.detail-card__description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
 .detail-card__meta {
   display: flex;
   gap: 32px;
@@ -92,6 +99,12 @@
   max-width: 420px;
 }
 
+.detail-card--evolution {
+  display: block;
+  margin-top: 24px;
+  padding: 28px 36px;
+}
+
 @media (max-width: 720px) {
   .detail-card {
     grid-template-columns: 1fr;
@@ -100,5 +113,8 @@
   .detail-card__art img {
     max-width: 220px;
     margin: 0 auto;
+  }
+  .detail-card--evolution {
+    padding: 20px;
   }
 }

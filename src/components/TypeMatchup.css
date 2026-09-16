@@ -1,0 +1,52 @@
+.type-matchup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.type-matchup__group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.type-matchup__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.type-matchup__label--weak {
+  color: var(--accent-red-dim);
+}
+
+.type-matchup__label--resist {
+  color: var(--accent-cyan);
+}
+
+.type-matchup__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.type-matchup__badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.type-matchup__multiplier {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.type-matchup__empty,
+.type-matchup__loading {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-muted);
+}

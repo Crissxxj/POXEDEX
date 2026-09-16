@@ -18,8 +18,9 @@ export const GENERATIONS = [
   { id: 9, label: "Gen IX", from: 906, to: 1025 },
 ];
 
-// Las urls de PokéAPI vienen como .../pokemon/25/ — extraemos el id de ahí.
+// Las urls de PokéAPI vienen como .../pokemon/25/ o .../pokemon-species/25/
+// — en ambos casos el id es el último número antes del slash final.
 export function extractIdFromUrl(url) {
-  const match = url.match(/\/pokemon\/(\d+)\/?$/);
+  const match = url.match(/\/(\d+)\/?$/);
   return match ? Number(match[1]) : null;
 }

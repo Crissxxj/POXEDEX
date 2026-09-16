@@ -55,4 +55,35 @@ export async function fetchPokemonByType(type) {
   return data.pokemon.map((entry) => entry.pokemon); // [{ name, url }, ...]
 }
 
+/**
+ * Obtiene la ficha de "especie" de un Pokémon: descripciones en distintos
+ * idiomas y la url de su cadena evolutiva.
+ * @param {string|number} idOrName
+ */
+export async function fetchPokemonSpecies(idOrName) {
+  const { data } = await api.get(`/pokemon-species/${idOrName}`);
+  return data;
+}
+
+/**
+ * Obtiene la cadena evolutiva completa a partir de la url
+ * que trae fetchPokemonSpecies (species.evolution_chain.url).
+ * @param {string} url
+ */
+export async function fetchEvolutionChain(url) {
+  const { data } = await api.get(url);
+  return data;
+}
+
+/**
+ * Obtiene el detalle de un tipo, incluyendo damage_relations
+ * (contra qué tipos es débil/resistente/inmune). Se usa para
+ * calcular las debilidades en la página de detalle.
+ * @param {string} type
+ */
+export async function fetchTypeDetail(type) {
+  const { data } = await api.get(`/type/${type}`);
+  return data;
+}
+
 export default api;

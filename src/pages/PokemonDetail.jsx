@@ -1,15 +1,26 @@
 import { Link, useParams } from "react-router-dom";
 import usePokemonDetail from "../hooks/usePokemonDetail";
+import usePokemonSpecies from "../hooks/usePokemonSpecies";
+import useTypeWeaknesses from "../hooks/useTypeWeaknesses";
 import TypeBadge from "../components/TypeBadge";
 import StatBar from "../components/StatBar";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
+import EvolutionChain from "../components/EvolutionChain";
+import MovesList from "../components/MovesList";
+import TypeMatchup from "../components/TypeMatchup";
 import { getTypeColor, capitalize } from "../utils/typeColors";
+import { getLevelUpMoves } from "../utils/moves";
 import "./PokemonDetail.css";
 
 export default function PokemonDetail() {
   const { name } = useParams();
   const { pokemon, loading, error } = usePokemonDetail(name);
+
+  const typeNames = pokemon ? pokemon.types.map((t) => t.type.name) : [];
+  const { descriptionEs, evolutionChain } = usePokemonSpecies(pokemon?.id);
+  const { weaknesses, resistances, loading: loadingWeaknesses } =
+    useTypeWeaknesses(typeNames);
 
   if (loading) return <Loader message={`Escaneando a ${capitalize(name)}…`} />;
   if (error) return <ErrorMessage message={error} />;
@@ -19,6 +30,8 @@ export default function PokemonDetail() {
   const image =
     pokemon.sprites?.other?.["official-artwork"]?.front_default ||
     pokemon.sprites?.front_default;
+
+  const levelUpMoves = getLevelUpMoves(pokemon.moves);
 
   return (
     <div className="container detail-page">
@@ -40,6 +53,10 @@ export default function PokemonDetail() {
               <TypeBadge key={type.name} type={type.name} />
             ))}
           </div>
+
+          {descriptionEs && (
+            <p className="detail-card__description">{descriptionEs}</p>
+          )}
 
           <div className="detail-card__meta">
             <div>
@@ -67,8 +84,25 @@ export default function PokemonDetail() {
               <StatBar key={s.stat.name} name={s.stat.name} value={s.base_stat} />
             ))}
           </div>
+
+          <h2 className="detail-card__section-title">Debilidades</h2>
+          <TypeMatchup
+            weaknesses={weaknesses}
+            resistances={resistances}
+            loading={loadingWeaknesses}
+          />
+
+          <h2 className="detail-card__section-title">Movimientos (por nivel)</h2>
+          <MovesList moves={levelUpMoves} />
         </div>
       </div>
+
+      {evolutionChain && evolutionChain.evolvesTo.length > 0 && (
+        <div className="detail-card detail-card--evolution">
+          <h2 className="detail-card__section-title">Cadena evolutiva</h2>
+          <EvolutionChain chain={evolutionChain} />
+        </div>
+      )}
     </div>
   );
 }
