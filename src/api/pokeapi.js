@@ -39,5 +39,8 @@ export async function fetchPokemonSummaries(results) {
     types: p.types.map((t) => t.type.name),
   }));
 }
-
+export async function fetchAllPokemonNames() {
+  const { data } = await api.get(`/pokemon?limit=100000&offset=0`);
+  return data.results; // [{ name, url }, ...]
+}
 export default api;
