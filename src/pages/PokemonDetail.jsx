@@ -9,6 +9,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import EvolutionChain from "../components/EvolutionChain";
 import MovesList from "../components/MovesList";
 import TypeMatchup from "../components/TypeMatchup";
+import PokemonArt from "../components/PokemonArt";
 import { getTypeColor, capitalize } from "../utils/typeColors";
 import { getLevelUpMoves } from "../utils/moves";
 import "./PokemonDetail.css";
@@ -27,10 +28,6 @@ export default function PokemonDetail() {
   if (!pokemon) return null;
 
   const mainColor = getTypeColor(pokemon.types[0]?.type?.name);
-  const image =
-    pokemon.sprites?.other?.["official-artwork"]?.front_default ||
-    pokemon.sprites?.front_default;
-
   const levelUpMoves = getLevelUpMoves(pokemon.moves);
 
   return (
@@ -41,7 +38,7 @@ export default function PokemonDetail() {
 
       <div className="detail-card" style={{ "--card-glow": mainColor }}>
         <div className="detail-card__art">
-          <img src={image} alt={pokemon.name} />
+          <PokemonArt pokemon={pokemon} />
         </div>
 
         <div className="detail-card__info">
