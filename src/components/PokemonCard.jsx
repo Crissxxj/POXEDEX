@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import TypeBadge from "./TypeBadge";
+import useFavorites from "../hooks/useFavorites";
 import { getTypeColor, capitalize } from "../utils/typeColors";
 import "./PokemonCard.css";
 
-/**
- * Card reutilizable que representa un Pokémon dentro de la grilla.
- * @param {{ pokemon: { id:number, name:string, image:string, types:string[] } }} props
- */
 export default function PokemonCard({ pokemon }) {
   const mainColor = getTypeColor(pokemon.types[0]);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorite = isFavorite(pokemon.id);
+
+  const handleFavoriteClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleFavorite(pokemon);
+  };
 
   return (
     <Link
@@ -16,6 +21,15 @@ export default function PokemonCard({ pokemon }) {
       className="poke-card"
       style={{ "--card-glow": mainColor }}
     >
+      <button
+        type="button"
+        className={"poke-card__fav" + (favorite ? " poke-card__fav--active" : "")}
+        onClick={handleFavoriteClick}
+        aria-label={favorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+        aria-pressed={favorite}
+      >
+        ♥
+      </button>
       <span className="poke-card__id">#{String(pokemon.id).padStart(3, "0")}</span>
       <div className="poke-card__art">
         {pokemon.image ? (

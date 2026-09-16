@@ -1,0 +1,37 @@
+.favorites-page {
+  padding: 48px 0 80px;
+}
+
+.favorites-page__header {
+  margin-bottom: 32px;
+}
+
+.favorites-page__header h1 {
+  font-size: 30px;
+  margin-top: 6px;
+}
+
+.favorites-page__empty {
+  padding: 60px 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.favorites-page__link {
+  color: var(--accent-cyan);
+  text-decoration: underline;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+}

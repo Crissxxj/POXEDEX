@@ -5,6 +5,7 @@ const LINKS = [
   { to: "/", label: "Inicio", end: true },
   { to: "/pokedex", label: "Pokédex" },
   { to: "/about", label: "Acerca de" },
+  { to: "/favoritos", label: "Favoritos" },
 ];
 
 export default function Navbar() {
