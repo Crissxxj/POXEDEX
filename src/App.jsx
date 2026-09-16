@@ -7,6 +7,7 @@ import PokemonDetail from "./pages/PokemonDetail";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Favorites from "./pages/Favorites";
+import Compare from "./pages/Compare";
 
 export default function App() {
   return (
@@ -17,8 +18,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/pokedex" element={<Pokedex />} />
           <Route path="/pokemon/:name" element={<PokemonDetail />} />
-          {/* La ruta de favoritos debe ir aquí adentro */}
           <Route path="/favoritos" element={<Favorites />} />
+          <Route path="/comparador" element={<Compare />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
