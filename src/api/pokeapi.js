@@ -39,8 +39,20 @@ export async function fetchPokemonSummaries(results) {
     types: p.types.map((t) => t.type.name),
   }));
 }
+
 export async function fetchAllPokemonNames() {
   const { data } = await api.get(`/pokemon?limit=100000&offset=0`);
   return data.results; // [{ name, url }, ...]
 }
+
+/**
+ * Obtiene todos los Pokémon que pertenecen a un tipo dado.
+ * Se usa para el filtro por tipo en la Pokédex.
+ * @param {string} type
+ */
+export async function fetchPokemonByType(type) {
+  const { data } = await api.get(`/type/${type}`);
+  return data.pokemon.map((entry) => entry.pokemon); // [{ name, url }, ...]
+}
+
 export default api;
